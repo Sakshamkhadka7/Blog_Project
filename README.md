@@ -2,7 +2,9 @@
 
 ## Tech Stack Used
 
-**MERN STACK**
+**MERN STACK** 
+
+This is still in development phase 
 
 **UI SCREENSHOTS**
 
