@@ -16,7 +16,7 @@ const blogSchema = new mongoose.Schema({
 
   image: {
     type: String,
-    required: true
+    required: true,
   },
   author: {
     type: mongoose.Schema.Types.ObjectId,
@@ -33,6 +33,15 @@ const blogSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+blogSchema.virtual("comments", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "post",
+});
+
+blogSchema.set("toObject", { virtuals: true });
+blogSchema.set("toJSON", { virtuals: true });
 
 const Blog = mongoose.model("Blog", blogSchema);
 
