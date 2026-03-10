@@ -8,9 +8,9 @@ import { GiClick } from "react-icons/gi";
 
 const ExploreBlog = () => {
   const [blogs, setBlogs] = useState([]);
-  const [commentBlog, setCommentBlog] = useState("");
+//   const [commentBlog, setCommentBlog] = useState("");
 
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState({});
 
   const navigate = useNavigate();
 
@@ -25,8 +25,9 @@ const ExploreBlog = () => {
 
     if (res.ok) {
       res = await res.json();
+      console.log(res.blog);
       setBlogs(res.blog);
-      console.log(blogs);
+    //   console.log(blogs);
     }
   };
 
@@ -34,22 +35,34 @@ const ExploreBlog = () => {
     getBlog();
   }, []);
 
+  const handleCommentChange = (blogId, value) => {
+    setComment({
+      ...comment,
+      [blogId]: value,
+    });
+  };
+
   const submitComment = async (id) => {
     // e.preventDefault();
     try {
+      const commenText = comment[id];
       let res = await fetch("http://localhost:9000/api/comment/commentPost", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content: comment, post: id }),
+        body: JSON.stringify({ content: commenText, post: id }),
         credentials: "include",
       });
 
       if (res.ok) {
         res = await res.json();
-        setCommentBlog(res.data);
+        setComment({
+          ...comment,
+          [id]: "",
+        });
         alert("Commented successfully");
+        getBlog();
       }
     } catch (error) {
       console.log("Error occured in a comment post of Explore Blog", error);
@@ -91,9 +104,7 @@ const ExploreBlog = () => {
                   <h1 className="font-medium text-black text-blue-400">
                     Slug : {blog.slug}
                   </h1>
-                  {
-                    console.log(commentBlog.content)
-                  }
+               
                 </div>
 
                 <div className="flex justify-center items-center gap-4 p-5">
@@ -103,7 +114,7 @@ const ExploreBlog = () => {
                     placeholder="Comment Here for post"
                     className="border p-1 rounded-2xl"
                     onChange={(e) => {
-                      setComment(e.target.value);
+                      handleCommentChange(blog._id, e.target.value);
                     }}
                   />
                   <GiClick
@@ -116,7 +127,9 @@ const ExploreBlog = () => {
                 </div>
 
                 <div>
-                  <h1 className="font-light">{commentBlog.data}</h1>
+                  <h1 className="font-light"> {
+                    
+                }</h1>
                 </div>
               </div>
             );
