@@ -1,0 +1,39 @@
+import { createContext, useEffect, useState } from "react";
+
+export const UserContext = createContext();
+
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const getMe = async () => {
+    try {
+      let res = await fetch("http://localhost:9000/api/user/getMe", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (res.ok) {
+        res = await res.json();
+        console.log(res);
+        setUser(res.user);
+        setIsLoading(false);
+        setError(false);
+      }
+    } catch (error) {
+      console.log("Error occured in a user context", error);
+      setError(true);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getMe();
+  }, []);
+
+  return (
+    <UserContext.Provider value={{ user, setUser, isLoading, error }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
