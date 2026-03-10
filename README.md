@@ -4,7 +4,9 @@
 
 **MERN STACK** 
 
-This is still in development phase 
+This is still in development phase
+
+I am making this project by learning and implementing at the same time
 
 **UI SCREENSHOTS**
 
