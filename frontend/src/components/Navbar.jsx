@@ -26,6 +26,10 @@ const Navbar = () => {
             <div className="cursor-pointer hover:text-blue-300 transition">
               <NavLink to="/resources">Resources</NavLink>
             </div>
+
+             <div className="cursor-pointer hover:text-blue-300 transition">
+              <NavLink to="/explore">Explore Blog</NavLink>
+            </div>
           </div>
         </div>
 

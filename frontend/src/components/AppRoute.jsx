@@ -9,6 +9,7 @@ import Comment from "../pages/Comment";
 import Profile from "../pages/Profile";
 import Resources from "../pages/Resources";
 import UploadBlog from "../pages/UploadBlog";
+import ExploreBlog from "../pages/ExploreBlog";
 
 const AppRoute = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoute = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/upload" element={<UploadBlog />} />
+        <Route path="/explore" element={<ExploreBlog />} />
       </Routes>
     </div>
   );
