@@ -6,7 +6,9 @@
 
 This is still in development phase
 
-I am making this project by learning and implementing at the same time
+I am making this project by learning and implementing at the same time and enchancing a MERN stack skill 
+
+
 
 **UI SCREENSHOTS**
 
