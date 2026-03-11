@@ -24,6 +24,8 @@ export const UserProvider = ({ children }) => {
       console.log("Error occured in a user context", error);
       setError(true);
       setIsLoading(false);
+    }finally{
+      setIsLoading(false)
     }
   };
 

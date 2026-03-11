@@ -8,7 +8,7 @@ import { GiClick } from "react-icons/gi";
 
 const ExploreBlog = () => {
   const [blogs, setBlogs] = useState([]);
-//   const [commentBlog, setCommentBlog] = useState("");
+  //   const [commentBlog, setCommentBlog] = useState("");
 
   const [comment, setComment] = useState({});
 
@@ -27,7 +27,7 @@ const ExploreBlog = () => {
       res = await res.json();
       console.log(res.blog);
       setBlogs(res.blog);
-    //   console.log(blogs);
+      // console.log(blogs);
     }
   };
 
@@ -59,7 +59,7 @@ const ExploreBlog = () => {
         res = await res.json();
         setComment({
           ...comment,
-          [id]: "",
+          [id]: " ",
         });
         alert("Commented successfully");
         getBlog();
@@ -74,12 +74,12 @@ const ExploreBlog = () => {
       <h1 className="text-4xl text-center font-bold">Explore Our Blog</h1>
       <br />
       {blogs.length > 0 ? (
-        <div className="flex flex-wrap justify-evenly gap-5 items-center p-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-5">
           {blogs.map((blog) => {
             return (
               <div
                 key={blog._id}
-                className="shadow-2xl p-5 rounded-xl flex flex-col justify-center items-center gap-2"
+                className="shadow-2xl p-5 rounded-xl flex flex-col justify-center items-start gap-2"
               >
                 <div className="text-xl font-bold font-serif p-5">
                   <h1>Title : {blog.title}</h1>
@@ -87,6 +87,8 @@ const ExploreBlog = () => {
 
                 <div className="w-80">
                   <img
+                   height={300}
+                   width={300}
                     src={`http://localhost:9000/image/${blog?.image}`}
                     alt={blog.image}
                   />
@@ -104,7 +106,6 @@ const ExploreBlog = () => {
                   <h1 className="font-medium text-black text-blue-400">
                     Slug : {blog.slug}
                   </h1>
-               
                 </div>
 
                 <div className="flex justify-center items-center gap-4 p-5">
@@ -113,6 +114,7 @@ const ExploreBlog = () => {
                     type="text"
                     placeholder="Comment Here for post"
                     className="border p-1 rounded-2xl"
+                    value={comment[blog._id] || ""}
                     onChange={(e) => {
                       handleCommentChange(blog._id, e.target.value);
                     }}
@@ -126,10 +128,25 @@ const ExploreBlog = () => {
                   />
                 </div>
 
-                <div>
-                  <h1 className="font-light"> {
-                    
-                }</h1>
+                <div className="mt-3 w-full">
+                  <h1 className="mb-2 font-semibold border-b pb-1">Comments</h1>
+
+                  {blog.comments && blog.comments.length > 0 ? (
+                    <div>
+                      {blog.comments.map((com) => {
+                        return (
+                          <div
+                            key={com._id}
+                            className="text-sm bg-gray-100 p-2 rounded mb-6"
+                          >
+                            {com.content}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div>No Comment Yet</div>
+                  )}
                 </div>
               </div>
             );

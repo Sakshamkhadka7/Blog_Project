@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/UserProvider";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const { user, isLoading, error } = useContext(UserContext);
+  console.log(user, isLoading, error);
 
   return (
     <nav className="relative px-5 py-3 shadow-2xl bg-white">
@@ -27,7 +31,7 @@ const Navbar = () => {
               <NavLink to="/resources">Resources</NavLink>
             </div>
 
-             <div className="cursor-pointer hover:text-blue-300 transition">
+            <div className="cursor-pointer hover:text-blue-300 transition">
               <NavLink to="/explore">Explore Blog</NavLink>
             </div>
           </div>
@@ -43,21 +47,34 @@ const Navbar = () => {
 
           <div>
             <div className="relative group text-2xl">
-              <CgProfile
-                className="cursor-pointer w-36 text-gray-500 hover:text-blue-400"
-                size={40}
-              />
+              {error || isLoading || user ? (
+                <div className="w-10 rounded-4xl p-1">
+                  <img
+                    src={`http://localhost:9000/image/${user?.profileImage}`}
+                  />
+                </div>
+              ) : (
+                <CgProfile
+                  className="cursor-pointer w-36 text-gray-500 hover:text-blue-400"
+                  size={40}
+                />
+              )}
 
               <div className="absolute hidden group-hover:block right-4 p-2 border border-cyan-700 rounded-2xl bg-blue-200">
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-                  <NavLink to="/login"> Login</NavLink>
-                </div>
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-                  <NavLink to="/register"> Register</NavLink>
-                </div>
-                <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-                  <NavLink to="/profile">Profile</NavLink>
-                </div>
+                {user ? (
+                  <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                    <NavLink to="/profile">Profile</NavLink>
+                  </div>
+                ) : (
+                  <>
+                    <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                      <NavLink to="/login"> Login</NavLink>
+                    </div>
+                    <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                      <NavLink to="/register"> Register</NavLink>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -81,7 +98,7 @@ const Navbar = () => {
             <NavLink to="/home"> Home</NavLink>
           </div>
           <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-           <NavLink to="/about">About us</NavLink>
+            <NavLink to="/about">About us</NavLink>
           </div>
           <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
             <NavLink to="/login"> Login</NavLink>

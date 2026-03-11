@@ -3,7 +3,7 @@ import Comment from "../models/Comment.js";
 export const commentPost = async (req, res) => {
 
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const { post, content } = req.body;
         const user = req.userMid;   // from authentication
 
