@@ -75,7 +75,7 @@ const Home = () => {
         </h1>
         <br />
         {blogs.length > 0 ? (
-          <div className="flex flex-wrap justify-evenly gap-5 items-center p-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 p-3 gap-7">
             {blogs.map((blog) => {
               return (
                 <div key={blog._id} className="shadow-2xl p-5 rounded-xl">

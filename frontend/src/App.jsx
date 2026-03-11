@@ -15,7 +15,7 @@ const App = () => {
     <div>
       <Navbar />
 
-      <div className="min-h-400 mt-3">
+      <div className="min-h-400 ">
         <AppRoute />
       </div>
     </div>

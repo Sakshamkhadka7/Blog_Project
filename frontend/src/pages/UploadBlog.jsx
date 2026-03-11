@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const UploadBlog = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ const UploadBlog = () => {
       if (res.ok) {
         res = await res.json();
         console.log(res);
-        alert("Blog uploaded successfully");
+        toast.success("Blog is Uploaded Successfully");
         setFormData({
           title: "",
           slug: "",
@@ -56,6 +57,7 @@ const UploadBlog = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
       <div className="w-full max-w-3xl bg-white shadow-xl rounded-2xl p-8">
+        <ToastContainer position="top-right" autoClose={3000} />
         <h2 className="text-3xl font-bold mb-6 text-center">Create New Blog</h2>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
