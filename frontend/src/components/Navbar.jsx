@@ -5,10 +5,26 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
+import { toast, ToastContainer } from "react-toastify";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
-  const { user, isLoading, error } = useContext(UserContext);
+  const { user, isLoading, setUser,error } = useContext(UserContext);
   console.log(user, isLoading, error);
+
+  const logout = async () => {
+    let res = await fetch("http://localhost:9000/api/user/logout", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
+
+    if (res.ok) {
+      toast.success("Logout successfully");
+      setUser("");
+    }
+  };
 
   return (
     <nav className="relative px-5 py-3 shadow-2xl bg-white">
@@ -38,6 +54,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden   md:flex  items-center justify-center gap-5 text-gray-700 font-medium">
+            <ToastContainer position="top-right" autoClose={3000} />
           <div className="hover:text-blue-300 transition cursor-pointer">
             <NavLink to="/home"> Home</NavLink>
           </div>
@@ -62,9 +79,21 @@ const Navbar = () => {
 
               <div className="absolute hidden group-hover:block right-4 p-2 border border-cyan-700 rounded-2xl bg-blue-200">
                 {user ? (
-                  <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-                    <NavLink to="/profile">Profile</NavLink>
-                  </div>
+                  <>
+                    <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                      <NavLink to="/profile">Profile</NavLink>
+                    </div>
+
+                    <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                      <button
+                        onClick={() => {
+                          logout();
+                        }}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </>
                 ) : (
                   <>
                     <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
@@ -93,6 +122,7 @@ const Navbar = () => {
 
       {menu && (
         <div className="md:hidden absolute right-1 w-40 bg-white shadow-lg border-spacing-0.5 rounded-2xl p-4 flex flex-col gap-4  text-gray-700 font-medium">
+        
           <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
             {" "}
             <NavLink to="/home"> Home</NavLink>

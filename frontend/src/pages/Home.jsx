@@ -91,11 +91,9 @@ const Home = () => {
                   </div>
 
                   <div className="font-semibold text-gray-700 p-4 flex justify-center items-center gap-4">
-                    <h1 className="text-xl">Content : {blog.content}</h1>
+                    <h1 className="text-sm">Content : {blog.content}</h1>
                     {/* <h1 className="text-blue-400">Link:{blog.slug}</h1> */}
-                    <h1 className="font-bold text-black">
-                      Status:{blog.status}
-                    </h1>
+                   
                   </div>
 
                   <div className="flex justify-center gap-7 items-center">
@@ -103,6 +101,12 @@ const Home = () => {
                     <FaCommentAlt size={24} />
                     <h1 className="font-medium text-black text-blue-400">
                       Slug : {blog.slug}
+                    </h1>
+                  </div>
+
+                  <div className="">
+                     <h1 className="font-bold text-black text-center mt-8">
+                      Status : {blog.status}
                     </h1>
                   </div>
                 </div>

@@ -87,7 +87,7 @@ const ExploreBlog = () => {
           {blogs.map((blog) => (
             <div
               key={blog._id}
-              className="bg-[#D4D4D4] w-full rounded-xl shadow-lg p-5 flex flex-col gap-4"
+              className=" w-full rounded-xl shadow-lg p-5 flex flex-col gap-4"
             >
              
               <div className="text-3xl font-medium font-serif text-center">

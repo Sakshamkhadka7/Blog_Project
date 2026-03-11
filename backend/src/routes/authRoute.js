@@ -9,7 +9,7 @@ authRoute.post("/register",upload.single("profileImage"),registerUser);
 authRoute.post("/login",login);
 authRoute.get("/getMe",user_mid,getMe);
 authRoute.get("/getUser",getAllusers);
-authRoute.get("/logout",logout);
+authRoute.get("/logout",user_mid,logout);
 
 
 
