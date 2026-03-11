@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FaCommentAlt } from "react-icons/fa";
 import { BiSolidLike } from "react-icons/bi";
 import { GiClick } from "react-icons/gi";
+import { FaEdit } from "react-icons/fa";
+import { AiFillDelete } from "react-icons/ai";
 
 const ExploreBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -69,6 +71,24 @@ const ExploreBlog = () => {
     }
   };
 
+  const deleteComment = async (id) => {
+    let res = await fetch(
+      `http://localhost:9000/api/comment/deleteComment/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      },
+    );
+
+    if (res.ok) {
+      alert("Comment has been deleted");
+      getBlog();
+    }
+  };
+
   return (
     <div className="p-8">
       <h1 className="text-4xl text-center font-bold">Explore Our Blog</h1>
@@ -87,8 +107,8 @@ const ExploreBlog = () => {
 
                 <div className="w-80">
                   <img
-                   height={300}
-                   width={300}
+                    height={300}
+                    width={300}
                     src={`http://localhost:9000/image/${blog?.image}`}
                     alt={blog.image}
                   />
@@ -137,9 +157,26 @@ const ExploreBlog = () => {
                         return (
                           <div
                             key={com._id}
-                            className="text-sm bg-gray-100 p-2 rounded mb-6"
+                            className="text-sm bg-gray-100 p-2 rounded mb-6 flex justify-between items-center"
                           >
-                            {com.content}
+                            <div>{com.content}</div>
+
+                            <div className="flex gap-2">
+                              <FaEdit
+                                size={22}
+                                className="hover:text-blue-400"
+                                onClick={() => {
+                                  navigate("/editComment", {
+                                    state: com,
+                                  });
+                                }}
+                              />
+                              <AiFillDelete
+                                size={22}
+                                className="hover:text-red-600"
+                                onClick={() => deleteComment(com._id)}
+                              />
+                            </div>
                           </div>
                         );
                       })}

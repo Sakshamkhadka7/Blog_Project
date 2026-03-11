@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 import Resources from "../pages/Resources";
 import UploadBlog from "../pages/UploadBlog";
 import ExploreBlog from "../pages/ExploreBlog";
+import EditComment from "../pages/EditComment";
 
 const AppRoute = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoute = () => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/upload" element={<UploadBlog />} />
         <Route path="/explore" element={<ExploreBlog />} />
+        <Route path="/editComment" element={<EditComment/>} />
       </Routes>
     </div>
   );
