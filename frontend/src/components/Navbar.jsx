@@ -3,13 +3,14 @@ import { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserProvider";
 import { toast, ToastContainer } from "react-toastify";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const { user, isLoading, setUser,error } = useContext(UserContext);
   console.log(user, isLoading, error);
+  const navigate=useNavigate();
 
   const logout = async () => {
     let res = await fetch("http://localhost:9000/api/user/logout", {
@@ -23,6 +24,7 @@ const Navbar = () => {
     if (res.ok) {
       toast.success("Logout successfully");
       setUser("");
+      navigate("/login");
     }
   };
 

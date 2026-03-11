@@ -29,8 +29,8 @@ const Login = () => {
         res = await res.json();
         console.log(res.user);
         setUser(res.user);
-        navigate("/learn");
-        alert("User Login succssfully")
+        navigate("/upload");
+        alert("User Login successfully")
       }
     } catch (error) {
       console.log("Error occured in a register", error);
@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="p-2 shadow-2xl w-120 m-auto rounded-2xl flex justify-center items-center">
+    <div className="p-2 shadow-2xl w-120 m-auto rounded-2xl flex justify-center items-center mt-20">
       <form
         onSubmit={(e) => {
           loginUser(e);

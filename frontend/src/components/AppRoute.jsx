@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Learn from "../pages/Learn";
@@ -11,8 +11,12 @@ import Resources from "../pages/Resources";
 import UploadBlog from "../pages/UploadBlog";
 import ExploreBlog from "../pages/ExploreBlog";
 import EditComment from "../pages/EditComment";
+import { useContext } from "react";
+import { UserContext } from "../context/UserProvider";
 
 const AppRoute = () => {
+  const { user, isLoading } = useContext(UserContext);
+
   return (
     <div>
       <Routes>
@@ -25,9 +29,20 @@ const AppRoute = () => {
         <Route path="/comment" element={<Comment />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/resources" element={<Resources />} />
-        <Route path="/upload" element={<UploadBlog />} />
+        <Route
+          path="/upload"
+          element={
+            isLoading ? (
+              <h1>Loading ......</h1>
+            ) : user ? (
+              <UploadBlog />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route path="/explore" element={<ExploreBlog />} />
-        <Route path="/editComment" element={<EditComment/>} />
+        <Route path="/editComment" element={<EditComment />} />
       </Routes>
     </div>
   );

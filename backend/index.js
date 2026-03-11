@@ -15,6 +15,7 @@ import cors from "cors";
 import authRoute from "./src/routes/authRoute.js";
 import blogRoute from "./src/routes/blogRoute.js";
 import commentRouter from "./src/routes/commentRoute.js";
+import productRouter from "./src/routes/productRoute.js";
 
 // base  router settings
 app.use(express.json());
@@ -36,6 +37,8 @@ app.use("/image", express.static("public/images"));
 app.use("/api/user", authRoute);
 app.use("/api/blog", blogRoute);
 app.use("/api/comment", commentRouter);
+app.use("/api/product", productRouter);
+
 
 app.listen(PORT, () => {
   console.log(`App is running at ${PORT}`);
