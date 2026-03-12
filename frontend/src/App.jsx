@@ -9,15 +9,17 @@ import Profile from "./pages/Profile";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import AppRoute from "./components/AppRoute";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <div>
       <Navbar />
 
-      <div className="min-h-400 ">
+      <div className="min-h-300 ">
         <AppRoute />
       </div>
+      <Footer/>
     </div>
   );
 };

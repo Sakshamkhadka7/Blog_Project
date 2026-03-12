@@ -13,6 +13,7 @@ import ExploreBlog from "../pages/ExploreBlog";
 import EditComment from "../pages/EditComment";
 import { useContext } from "react";
 import { UserContext } from "../context/UserProvider";
+import Product from "../pages/Product";
 
 const AppRoute = () => {
   const { user, isLoading } = useContext(UserContext);
@@ -28,7 +29,9 @@ const AppRoute = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/comment" element={<Comment />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/resources" element={<Resources />} />
+        {/* <Route path="/resources" element={<Resources />} /> */}
+        <Route path="/product" element={<Product />} />
+
         <Route
           path="/upload"
           element={

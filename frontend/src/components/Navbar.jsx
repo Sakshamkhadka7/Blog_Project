@@ -38,16 +38,16 @@ const Navbar = () => {
 
           <div className="hidden md:flex gap-6 text-gray-700 font-medium">
             <div className="cursor-pointer hover:text-blue-300 transition">
-              Product
+             <NavLink to="/product"> Product</NavLink>
             </div>
 
             <div className="cursor-pointer hover:text-blue-300 transition">
               <NavLink to="/learn"> Learn</NavLink>
             </div>
 
-            <div className="cursor-pointer hover:text-blue-300 transition">
+            {/* <div className="cursor-pointer hover:text-blue-300 transition">
               <NavLink to="/resources">Resources</NavLink>
-            </div>
+            </div> */}
 
             <div className="cursor-pointer hover:text-blue-300 transition">
               <NavLink to="/explore">Explore Blog</NavLink>
