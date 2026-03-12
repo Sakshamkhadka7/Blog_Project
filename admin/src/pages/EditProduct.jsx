@@ -41,7 +41,7 @@ const EditProduct = () => {
 
       if (res.ok) {
         res = await res.json();
-        navigate("/product")
+        navigate("/admin/product")
       }
     } catch (error) {
       console.log("Error occured in uploading product frontend", error);

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import  {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [form, setForm] = useState({
@@ -12,13 +12,35 @@ const Product = () => {
   const [image, setImage] = useState(null);
   const [product, setProduct] = useState([]);
 
-   const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const submitForm = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const deleteProduct = async (id) => {
+    try {
+      let res = await fetch(
+        `http://localhost:9000/api/product/deleteProduct/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        },
+      );
+
+      if (res.ok) {
+        alert("Product successfully deleted");
+        getProduct();
+      }
+    } catch (error) {
+      console.log("Error occured in a admin frontend deleteproduct", error);
+    }
   };
 
   const getProduct = async () => {
@@ -182,19 +204,23 @@ const Product = () => {
                     </td>
 
                     <td className="py-3 px-6 flex gap-2">
-                      <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
-                      
-                      onClick={()=>{
-                        navigate("/editProduct",{
-                          state:pro
-                        })
-                      }}
-
+                      <button
+                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
+                        onClick={() => {
+                          navigate("/editProduct", {
+                            state: pro,
+                          });
+                        }}
                       >
                         Edit
                       </button>
 
-                      <button className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                      <button
+                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                        onClick={() => {
+                          deleteProduct(pro._id);
+                        }}
+                      >
                         Delete
                       </button>
                     </td>
