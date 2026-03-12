@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Learn from "./pages/Learn";
 import User from "./pages/User";
 import Product from "./pages/Product";
+import EditProduct from "./pages/EditProduct";
 
 const App = () => {
   const { admin, loading, error } = useContext(AdminContext);
@@ -29,6 +30,8 @@ const App = () => {
         />
 
         <Route path="/login" element={<Login />} />
+        <Route path="/editProduct" element={<EditProduct />} />
+
 
         <Route
           path="/admin"
@@ -42,6 +45,7 @@ const App = () => {
           <Route path="product" element={<Product />} />
           <Route path="learn" element={<Learn />} />
           <Route path="user" element={<User />} />
+          
         </Route>
       </Routes>
     </div>
