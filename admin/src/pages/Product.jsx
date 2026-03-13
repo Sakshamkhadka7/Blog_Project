@@ -85,6 +85,7 @@ const Product = () => {
       if (res.ok) {
         res = await res.json();
         alert("Product uploaded");
+        getProduct();
       }
     } catch (error) {
       console.log("Error occured in uploading product frontend", error);

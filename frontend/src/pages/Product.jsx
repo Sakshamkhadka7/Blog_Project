@@ -46,6 +46,8 @@ const Product = () => {
                 <h1 className="font-light text-l p-2">
                   Descriptions : {pro.descriptions}
                 </h1>
+
+                <button className="border p-4 rounded px-20 bg-blue-300 hover:bg-blue-600 text-white">Buy Now</button>
               </div>
             );
           })}

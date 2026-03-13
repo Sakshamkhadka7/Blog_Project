@@ -10,7 +10,7 @@ const EditComment = () => {
 
   console.log(state);
   const id = state._id;
-  const [comUpdate, setComUpdate] = useState("");
+  const [comUpdate, setComUpdate] = useState(state.content);
 
   const updateComment = async () => {
     let res = await fetch(
@@ -39,6 +39,7 @@ const EditComment = () => {
         type="text"
         placeholder="Comment Here for post"
         className="border p-3 w-80 rounded-2xl"
+        value={comUpdate}
         onChange={(e) => {
           setComUpdate(e.target.value);
         }}

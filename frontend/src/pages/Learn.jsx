@@ -38,7 +38,7 @@ const Learn = () => {
                 <h1 className="font-light text-l p-2">
                   Descriptions : {pro.descriptions}
                 </h1>
-                <h1 className="text-xl font-bold p-2">Price : {pro.link}</h1>
+                <h1 className="text-xl font-bold p-2">Link : {pro.link}</h1>
               </div>
             );
           })}

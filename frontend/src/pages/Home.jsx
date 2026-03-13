@@ -33,11 +33,13 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-10 justify-center items-center p-1 mt-15">
+      <div className="flex flex-col gap-10 justify-center items-center p-1 mt-11">
         {console.log(blogs)}
-        <div className="flex border-2 p-2 w-70 font-medium gap-5 rounded-md">
-          <div>Logo</div>
-          <h1>Made by Saksham Khadka</h1>
+        <div className="flex border-b-2  w-90 font-medium gap-5 rounded-md justify-center items-center">
+          <div className="w-25">
+            <img src="/leablog.png" alt="logo" />
+          </div>
+          <h1 className="text-center">Made by Saksham Khadka</h1>
         </div>
 
         <div>
@@ -78,7 +80,7 @@ const Home = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 p-3 gap-7">
             {blogs.map((blog) => {
               return (
-                <div key={blog._id} className="shadow-2xl p-5 rounded-xl">
+                <div key={blog._id} className="shadow-2xl p-5 rounded-xl space-y-1">
                   <div className="text-xl font-bold font-serif p-5">
                     <h1>Title : {blog.title}</h1>
                   </div>
@@ -93,19 +95,36 @@ const Home = () => {
                   <div className="font-semibold text-gray-700 p-4 flex justify-center items-center gap-4">
                     <h1 className="text-sm">Content : {blog.content}</h1>
                     {/* <h1 className="text-blue-400">Link:{blog.slug}</h1> */}
-                   
                   </div>
 
-                  <div className="flex justify-center gap-7 items-center">
+                  {/* <div className="flex justify-between gap-7 items-center">
                     <BiSolidLike size={32} />
                     <FaCommentAlt size={24} />
                     <h1 className="font-medium text-black text-blue-400">
                       Slug : {blog.slug}
                     </h1>
+                  </div> */}
+                  <div className="flex justify-between items-center mt-4 border-t pt-3">
+                    <div className="flex gap-6 items-center">
+                      <div className="flex items-center gap-2 text-gray-700 hover:text-blue-500 cursor-pointer">
+                        <BiSolidLike size={22} />
+                        <span className="text-sm">Like</span>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-gray-700 hover:text-blue-500 cursor-pointer">
+                        <FaCommentAlt size={18} />
+                        <span className="text-sm">Comment</span>
+                      </div>
+                    </div>
+
+                   
                   </div>
+                   <a className="text-blue-500 text-sm font-medium hover:cursor-pointer" href={blog.slug}>
+                      {blog.slug}
+                    </a>
 
                   <div className="">
-                     <h1 className="font-bold text-black text-center mt-8">
+                    <h1 className="font-bold text-black text-center mt-8">
                       Status : {blog.status}
                     </h1>
                   </div>
