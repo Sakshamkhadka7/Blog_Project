@@ -43,6 +43,7 @@ export const updateComment = async (req, res) => {
     const commentId = req.params.id;
     const user = req.userMid;
     const { content } = req.body;
+    
 
     const comment = await Comment.findById(commentId);
     if (!comment) {

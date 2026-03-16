@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
 
   const getMe = async () => {
     try {
-      let res = await fetch("http://localhost:9000/api/user/getMe", {
+      let res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/getMe`, {
         method: "GET",
         credentials: "include",
       });

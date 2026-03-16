@@ -8,9 +8,9 @@ import { UserContext } from "../context/UserProvider";
 import { toast, ToastContainer } from "react-toastify";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
-  const { user, isLoading, setUser,error } = useContext(UserContext);
+  const { user, isLoading, setUser, error } = useContext(UserContext);
   console.log(user, isLoading, error);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const logout = async () => {
     let res = await fetch("http://localhost:9000/api/user/logout", {
@@ -38,7 +38,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex gap-6 text-gray-700 font-medium">
             <div className="cursor-pointer hover:text-blue-300 transition">
-             <NavLink to="/product"> Product</NavLink>
+              <NavLink to="/product"> Product</NavLink>
             </div>
 
             <div className="cursor-pointer hover:text-blue-300 transition">
@@ -56,7 +56,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden   md:flex  items-center justify-center gap-5 text-gray-700 font-medium">
-            <ToastContainer position="top-right" autoClose={3000} />
+          <ToastContainer position="top-right" autoClose={3000} />
           <div className="hover:text-blue-300 transition cursor-pointer">
             <NavLink to="/home"> Home</NavLink>
           </div>
@@ -69,7 +69,7 @@ const Navbar = () => {
               {error || isLoading || user ? (
                 <div className="w-10 rounded-4xl p-1">
                   <img
-                    src={`http://localhost:9000/image/${user?.profileImage}`}
+                    src={`${import.meta.env.VITE_API_URL}/image/${user?.profileImage}`}
                   />
                 </div>
               ) : (
@@ -124,7 +124,6 @@ const Navbar = () => {
 
       {menu && (
         <div className="md:hidden absolute right-1 w-40 bg-white shadow-lg border-spacing-0.5 rounded-2xl p-4 flex flex-col gap-4  text-gray-700 font-medium">
-        
           <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
             {" "}
             <NavLink to="/home"> Home</NavLink>
@@ -132,17 +131,33 @@ const Navbar = () => {
           <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
             <NavLink to="/about">About us</NavLink>
           </div>
-          <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-            <NavLink to="/login"> Login</NavLink>
-          </div>
-          <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-            {" "}
-            <NavLink to="/register"> Register</NavLink>
-          </div>
-          <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
-            {" "}
-            <NavLink to="/profile"> Profile</NavLink>
-          </div>
+          {error || isLoading || user ? (
+            <>
+              <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                {" "}
+                <NavLink to="/profile"> Profile</NavLink>
+              </div>
+              <div className="px-4 py-2 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                <button
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                <NavLink to="/login"> Login</NavLink>
+              </div>
+              <div className="px-2 py-1 hover:bg-gray-100 cursor-pointer hover:text-blue-300 transition">
+                {" "}
+                <NavLink to="/register"> Register</NavLink>
+              </div>
+            </>
+          )}
         </div>
       )}
     </nav>

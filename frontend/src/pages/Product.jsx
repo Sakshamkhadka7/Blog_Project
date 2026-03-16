@@ -6,7 +6,7 @@ const Product = () => {
   const getProduct = async () => {
     try {
       let res = await fetch(
-        "http://localhost:9000/api/product/displayProduct",
+        `${import.meta.env.VITE_API_URL}/api/product/displayProduct`,
         {
           method: "GET",
           headers: {

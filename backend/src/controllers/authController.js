@@ -1,7 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { use } from "react";
 export const registerUser = async (req, res) => {
   try {
     console.log(req.body);
@@ -20,7 +19,7 @@ export const registerUser = async (req, res) => {
       return res.status(401).json({
         message: "User already existed",
       });
-    }
+    } 
 
     const hashedPassword = await bcrypt.hash(password, 10);
 

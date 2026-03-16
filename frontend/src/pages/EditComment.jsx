@@ -14,7 +14,7 @@ const EditComment = () => {
 
   const updateComment = async () => {
     let res = await fetch(
-      `http://localhost:9000/api/comment/updateComment/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/comment/updateComment/${id}`,
       {
         method: "PUT",
         headers: {

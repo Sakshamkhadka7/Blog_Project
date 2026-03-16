@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import.meta.env.VITE_API_URL
 
 const UploadBlog = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const UploadBlog = () => {
     console.log(blogData);
     // API call here
     try {
-      let res = await fetch("http://localhost:9000/api/blog/blogPost", {
+      let res = await fetch(`${import.meta.env.VITE_API_URL}/api/blog/createBlog`, {
         method: "POST",
         body: blogData,
         credentials: "include",
